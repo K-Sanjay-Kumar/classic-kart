@@ -148,7 +148,6 @@ const Contact = () => {
             </p>
             <p>You can also reach us at:</p>
             <ul>
-              <li>Email: info@classickart.com</li>
               <li>Phone: +91 7993545724</li>
             </ul>
           </div>
