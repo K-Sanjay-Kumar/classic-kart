@@ -1,0 +1,82 @@
+
+   .header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 1rem 0;
+    z-index: 1000;
+    transition: var(--transition);
+    border-bottom: 1px solid transparent;
+  }
+  
+  .header.scrolled {
+    box-shadow: var(--shadow);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.75rem 0;
+  }
+  
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin: 0;
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  
+  .navigation ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  }
+  
+  .navigation a {
+    color: var(--text-color);
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+    padding: 0.25rem 0;
+  }
+  
+  .navigation a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: var(--transition);
+  }
+  
+  .navigation a:hover,
+  .navigation a.active {
+    color: var(--primary-color);
+  }
+  
+  .navigation a:hover::after,
+  .navigation a.active::after {
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .logo h1 {
+      font-size: 1.5rem;
+    }
+  
+    .navigation ul {
+      gap: 1rem;
+    }
+  }
+  

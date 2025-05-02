@@ -1,0 +1,56 @@
+.delivery-highlights {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  .delivery-highlights.small {
+    gap: 0.5rem;
+  }
+  
+  .delivery-highlights.large {
+    gap: 1.5rem;
+  }
+  
+  .highlight {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  
+  .delivery-highlights.small .highlight {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .delivery-highlights.large .highlight {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .free-delivery {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+  }
+  
+  .cash-on-delivery {
+    background-color: #fff8e1;
+    color: #ff8f00;
+  }
+  
+  .highlight-icon {
+    font-size: 1.1em;
+  }
+  
+  .delivery-highlights.small .highlight-icon {
+    font-size: 1em;
+  }
+  
+  .delivery-highlights.large .highlight-icon {
+    font-size: 1.2em;
+  }
+  
