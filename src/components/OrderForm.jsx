@@ -126,24 +126,50 @@ const OrderForm = ({ product, quantity = 1, onClose, onSubmit }) => {
       timestamp: new Date().toISOString(),
     };
 
-    const templateParams = {
-      email: formData.email,
-      order_id: "101",
-      cost: {   
-        total: (product.price * quantity).toFixed(2),
+    const generateOrderHTML = (orders) => {
+      return orders.map(order => `
+        <table style="width: 100%; border-collapse: collapse">
+          <tr style="vertical-align: top">
+            <td style="padding: 24px 8px 0 4px; display: inline-block; width: max-content">
+              <img style="height: 64px" height="64px" src="${order.image_url}" alt="item" />
+            </td>
+            <td style="padding: 24px 8px 0 8px; width: 100%">
+              <div>${order.product_name}</div>
+              <div style="font-size: 14px; color: #888; padding-top: 4px">QTY: ${order.units}</div>
+            </td>
+            <td style="padding: 24px 4px 0 0; white-space: nowrap">
+              <strong>$${order.product_price}</strong>
+            </td>
+          </tr>
+        </table>
+      `).join("")
+    }
+    
+
+    const ordersArray = [
+      {
+        product_name: product.name,
+        product_price: product.price.toFixed(2),
+        units: quantity,
+        image_url: product.image, // Public URL
       },
-      orders: [
-        {
-          product_name: product.name,
-          product_price: product.price.toFixed(2),
-          units: quantity,
-          image_url: product.image, // This should be a full public image URL
-        },
-      ],
+    ];
+
+    const templateParams = {
+      customer_name: formData.customerName,
+      mobile_number: formData.mobileNumber,
+      email: formData.email,
+      state: formData.state,
+      city: formData.city,
+      address: formData.address,
+      pincode: formData.pincode,
+      order_id: "101",
+      total_cost: (product.price * quantity).toFixed(2),
+      orders_html: generateOrderHTML(ordersArray), // 👈 Injected here
     };
 
     try {
-      await emailjs.send("service_6wrmyhx", "template_zew41lz", templateParams, "1MDuGm218X0MEce6V");
+      await emailjs.send("service_6wrmyhx", "template_dhibr51", templateParams, "1MDuGm218X0MEce6V");
   
       await addDoc(ref, orderData); // Store order in Firebase Firestore
   
@@ -214,7 +240,7 @@ const OrderForm = ({ product, quantity = 1, onClose, onSubmit }) => {
             <div className="form-group">
               <label htmlFor="mobileNumber">Mobile Number *</label>
               <input
-                type="tel"
+                type="number"
                 id="mobileNumber"
                 name="mobileNumber"
                 value={formData.mobileNumber}
